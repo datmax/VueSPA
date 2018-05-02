@@ -4,7 +4,7 @@
        <span class="logo" dark @click="navigateTo({name: 'root'})">Tab Tracker</span>
     </v-toolbar-title>
     <v-toolbar-items>
-        <v-btn flat dark>Browse</v-btn>     
+        <v-btn flat dark @click="navigateTo({name: 'songs'})">Browse</v-btn>     
     </v-toolbar-items>
     <v-spacer></v-spacer>
 
@@ -15,7 +15,10 @@
 
         <v-btn v-if="!$store.state.isUserLoggedIn" flat dark @click="navigateTo({name: 'register'})">
             Sign up
-            </v-btn>     
+            </v-btn>
+        <v-btn v-if="$store.state.isUserLoggedIn" flat dark @click="logOut">
+            Log out
+            </v-btn>    
     </v-toolbar-items>
 </v-toolbar>
 </template>
@@ -26,6 +29,15 @@ export default {
   methods:{
       navigateTo(route){
           this.$router.push(route)
+      },
+      logOut(){
+          this.$store.dispatch('setToken', null)
+          this.$store.dispatch('setUser', null)
+          //TODO: redirect to home page
+          this.$router.push({
+              name: 'root'
+          })
+          
       }
   },
 }

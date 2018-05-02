@@ -2,10 +2,7 @@
 <v-container>
 <v-layout row wrap>
   <v-flex md6 offset-md3 xs12>
-    <div class="white elevation-2 form">
-      <v-toolbar flat dense class="blue-grey darken-3" dark>
-      <v-toolbar-title>Register</v-toolbar-title>
-      </v-toolbar>
+    <panel title="Register" class="form">
       <div class="pl-4 pr-4 pt-1 pb-1 mt-2">
       <form name="register" autocomplete="off">
       <v-text-field v-model="email" label="email"/>
@@ -17,13 +14,14 @@
       <br>
       <v-btn class="blue-grey darken-3 subheading" @click="register" dark>Register</v-btn>
       </div>
-    </div>
+    </panel>
   </v-flex>
 </v-layout>
 </v-container>
 </template>
 
 <script>
+import Panel from "@/components/Panel"
 import AuthenticationService from "@/services/AuthenticationService"
 export default {
   name: 'HelloWorld',
@@ -50,6 +48,9 @@ export default {
       console.log(response.data)
     }
   },
+  components:{
+    Panel
+  }
 }
 </script>
 

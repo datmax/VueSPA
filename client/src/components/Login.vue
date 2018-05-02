@@ -2,10 +2,7 @@
 <v-container>
 <v-layout row wrap>
   <v-flex md6 offset-md3 xs12>
-    <div class="white elevation-2 form">
-      <v-toolbar flat dense class="blue-grey darken-3" dark>
-      <v-toolbar-title>Login</v-toolbar-title>
-      </v-toolbar>
+    <panel title="Login" class="form">
       <div class="pl-4 pr-4 pt-1 pb-1 mt-2">
       <v-text-field v-model="email" label="email"/>
       <br>
@@ -16,7 +13,7 @@
       <v-btn class="blue-grey darken-3 subheading" @click="login" dark>Login</v-btn>
       <p v-html="token"></p>
       </div>
-    </div>
+    </panel>
   </v-flex>
 </v-layout>
 </v-container>
@@ -24,6 +21,7 @@
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService"
+import Panel from "@/components/Panel"
 
 export default {
   name: 'Login',
@@ -50,6 +48,9 @@ export default {
         console.log(error)
       }
     }
+  },
+  components:{
+    Panel
   }
 }
 </script>
