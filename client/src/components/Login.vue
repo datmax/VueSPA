@@ -4,18 +4,17 @@
   <v-flex md6 offset-md3 xs12>
     <div class="white elevation-2 form">
       <v-toolbar flat dense class="blue-grey darken-3" dark>
-      <v-toolbar-title>Register</v-toolbar-title>
+      <v-toolbar-title>Login</v-toolbar-title>
       </v-toolbar>
       <div class="pl-4 pr-4 pt-1 pb-1 mt-2">
-      <form name="register" autocomplete="off">
       <v-text-field v-model="email" label="email"/>
       <br>
-      <v-text-field v-model="password" type="password" name="password" label="password" autocomplete="new-password"/>
+      <v-text-field v-model="password" type="password" name="password" label="password"/>
       <br>
-      </form>
       <div v-html="error" class="body-2"></div>
       <br>
-      <v-btn class="blue-grey darken-3 subheading" @click="register" dark>Register</v-btn>
+      <v-btn class="blue-grey darken-3 subheading" @click="login" dark>Login</v-btn>
+      <p v-html="token"></p>
       </div>
     </div>
   </v-flex>
@@ -25,31 +24,33 @@
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService"
+
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      email: "",
-      password: "",
-      error: "",
-    }
+  name: 'Login',
+  data(){
+      return{
+          email: "",
+          password: "",
+          error: null,
+          token: ""
+      }
   },
   methods:{
-    async register(){
+    async login(){
       try{ 
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
         email: this.email,
-        password: this.password
+        password: this.password,
       })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-       }
-      catch(error){
+        
+      } catch(error){
         this.error = error.response.data.error
+        console.log(error)
       }
-      console.log(response.data)
     }
-  },
+  }
 }
 </script>
 
