@@ -2,6 +2,7 @@
     <div class="elevation-2">
         <v-toolbar flat dense class="blue-grey darken-3" dark>
             <v-toolbar-title>{{title}}</v-toolbar-title>
+            <slot name="action" />
         </v-toolbar>
 
         <div class="pl-4 pr-4 pt-2 pb-2">
