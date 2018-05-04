@@ -13,8 +13,10 @@
         <v-spacer></v-spacer>
         <v-flex xs12 offset-md2 md6>
             <panel title="Tab and lyrics">
-            <v-text-field label="Lyrics" v-model="song.lyrics" multi-line></v-text-field>
-            <v-text-field label="Tab" v-model="song.tab" multi-line></v-text-field>
+            <v-text-field label="Lyrics" required :rules="[required]"
+             v-model="song.lyrics" multi-line></v-text-field>
+            <v-text-field label="Tab" required :rules="[required]"
+            v-model="song.tab" multi-line></v-text-field>
             
                 
             </panel>

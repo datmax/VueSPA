@@ -6,9 +6,15 @@
                 <v-icon>add</v-icon>
             </v-btn>
             <div v-for="song in songs" :key="song.id">
-                {{song.title}}
-                {{song.artist}}
-                {{song.album}}
+            <v-layout>
+                <v-flex xs6>
+                    <h1>{{song.title}}</h1>
+                    <h2>{{song.artist}}</h2>
+                </v-flex>
+                <v-flex xs6>
+                    <img :src="song.albumImage" />
+                </v-flex>
+            </v-layout>
             </div>
             </panel>
         </v-flex>
